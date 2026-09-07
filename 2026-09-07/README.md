@@ -6,5 +6,15 @@
 
 ### 용어
 JSON : 데이터를 텍스트 파일 형태로 저장하는 형식
+
 /data/study_logs.json : 컨테이너 내부에서 앱이 데이터를 저장할 파일 경로
-마운트(mount) : 외부 저장소인 볼륨을 컨테이너 내부 경로에 연결하는 일
+
+마운트(mount) : 외부 저장소인 볼륨을 컨테이너 내부 경로에 연결하는 일 => 그래서 볼륨을 컨테이너와 마운트하는 작업의 명령어는 아래와 같다.
+"--mount type=volume,source=study-log-data,target=/data \"
+type은 볼륨, source는 미리 만들어놓은 volume 중 하나, target은 이 저장소가 연결될 위치를 말한다.(/data면 최상위 폴더 아래 data폴더를 의미)
+
+inspect : Docker 객체의 상세 정보를 JSON 형태로 보여주는 명령. 볼륨에 대해서 보여달라고 하면 아래의 정보를 알려준다.
+볼륨 이름, 어떤 드라이버가 관리하는지, Docker가 데이터를 보관하는 내부 위치, 설정 환경
+
+만약 실제 json 파일의 기록을 보고 싶다면 아래의 명령어를 사용한다.
+docker exec docker-study-log cat /data/study_logs.json
